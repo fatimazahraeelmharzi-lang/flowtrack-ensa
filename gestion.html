@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
     <!-- BARRE DE NAVIGATION -->
     <nav class="navbar">
         <div class="navbar-logo">ENSA Fès</div>
@@ -17,20 +18,25 @@
 
     <!-- CONTENEUR PRINCIPAL -->
     <div class="gestion-container">
+
         <!-- EN-TÊTE -->
         <div class="gestion-header">
             <div class="header-content">
                 <h1>Gestion des Absences</h1>
-                <p class="header-subtitle">FlowTrack : « Automatiser, organiser, réussir »</p>
+                <p class="header-subtitle">
+                    FlowTrack : « Automatiser, organiser, réussir »
+                </p>
             </div>
         </div>
 
         <!-- CONTENU -->
         <div class="gestion-content">
+
             <!-- SECTION CONTRÔLES -->
             <div class="controls-section">
                 <div class="controls-row">
-                    <!-- SÉLECTION FILIÈRE -->
+
+                    <!-- FILIÈRE -->
                     <div class="control-group">
                         <label for="filiereSelect">Sélectionner la filière</label>
                         <select id="filiereSelect" onchange="loadStudents()">
@@ -43,32 +49,43 @@
                         </select>
                     </div>
 
-                    <!-- SÉLECTION SEMAINE -->
+                    <!-- SEMAINE -->
                     <div class="control-group">
                         <label for="semaineSelect">Sélectionner la semaine</label>
-                        <select id="semaineSelect" onchange="updateTableau(); updateStatistics()">
+                        <select id="semaineSelect"
+                                onchange="updateTableau(); updateStatistics()">
                             <option value="">-- Choisir une semaine --</option>
                         </select>
                     </div>
 
-                    <!-- BOUTONS D'ACTION -->
+                    <!-- BOUTONS -->
                     <div class="btn-group">
-                        <button class="btn-secondary btn-print" onclick="exportToPDF()">
+                        <button class="btn-secondary btn-print"
+                                onclick="exportToPDF()">
                             🖨️ Imprimer PDF
                         </button>
-                        <button class="btn-secondary" onclick="importDAT()">
+
+                        <!-- ✅ NOUVELLE FONCTIONNALITÉ AJOUTÉE -->
+                        <button class="btn-secondary"
+                                onclick="importDAT()">
                             📁 Importer .dat
                         </button>
-                        <button class="btn-secondary" onclick="resetData()">
+
+                        <button class="btn-secondary"
+                                onclick="resetData()">
                             ↺ Réinitialiser
                         </button>
                     </div>
+
                 </div>
             </div>
 
-            <!-- TABLEAU DES ABSENCES -->
+            <!-- TABLEAU -->
             <div id="tableContainer" style="display: none;">
-                <h2 style="margin-bottom: 1.5rem; color: var(--bleu-fonce); font-size: 1.5rem; font-weight: 700;">Détail des Absences</h2>
+                <h2 style="margin-bottom: 1.5rem; color: var(--bleu-fonce);">
+                    Détail des Absences
+                </h2>
+
                 <div class="table-container">
                     <table class="attendance-table" id="attendanceTable">
                         <thead>
@@ -80,31 +97,38 @@
                             </tr>
                         </thead>
                         <tbody id="tableBody">
-                            <!-- Les données seront insérées ici par JavaScript -->
+                            <!-- Données JS -->
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- SECTION STATISTIQUES -->
-            <div id="statisticsContainer" class="statistics-section" style="display: none;">
+            <!-- STATISTIQUES -->
+            <div id="statisticsContainer"
+                 class="statistics-section"
+                 style="display: none;">
+
                 <h2>📊 Statistiques Cumulées</h2>
+
                 <div class="stats-cards">
                     <div class="stat-card total">
                         <div class="stat-icon">👥</div>
                         <div class="stat-value" id="totalStudents">0</div>
                         <div class="stat-label">Total Étudiants</div>
                     </div>
+
                     <div class="stat-card present">
                         <div class="stat-icon">✅</div>
                         <div class="stat-value" id="totalPresent">0</div>
                         <div class="stat-label">Présents</div>
                     </div>
+
                     <div class="stat-card absent">
                         <div class="stat-icon">❌</div>
                         <div class="stat-value" id="totalAbsent">0</div>
                         <div class="stat-label">Absents</div>
                     </div>
+
                     <div class="stat-card percentage">
                         <div class="stat-icon">📈</div>
                         <div class="stat-value" id="percentagePresent">0%</div>
@@ -112,23 +136,28 @@
                     </div>
                 </div>
 
-                <!-- GRAPHIQUE -->
                 <div class="chart-container">
                     <canvas id="attendanceChart"></canvas>
                 </div>
             </div>
 
-            <!-- MESSAGE VIDE -->
+            <!-- ÉTAT VIDE -->
             <div id="emptyState" class="empty-state">
-                <p>Sélectionnez une filière et une semaine pour afficher le tableau</p>
+                <p>
+                    Sélectionnez une filière et une semaine
+                    pour afficher le tableau
+                </p>
             </div>
+
         </div>
     </div>
 
-    <!-- SCRIPTS -->
+    <!-- SCRIPTS (CHEMINS CONSERVÉS) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="script.js"></script>
-    <script src="statistics.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/statistics.js"></script>
+
 </body>
 </html>
+
