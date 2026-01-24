@@ -143,27 +143,34 @@ function initializeWeeks() {
 function handleLogin(e) {
     e.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
     const errorMessage = document.getElementById('errorMessage');
 
-    // Validation simple
-    if (!email.endsWith('@ensa.ma')) {
-        errorMessage.textContent = '❌ L\'email doit se terminer par @ensa.ma';
+    console.log('Tentative de connexion:', username, password);
+    console.log('Utilisateurs disponibles:', Object.keys(users));
+
+    // Vérifier les identifiants
+    if (!users[username]) {
+        console.log('Utilisateur non trouvé:', username);
+        errorMessage.textContent = '❌ Nom d\'utilisateur ou mot de passe incorrect';
         errorMessage.style.display = 'block';
         return;
     }
 
-    if (password.length < 4) {
-        errorMessage.textContent = '❌ Le mot de passe doit contenir au moins 4 caractères';
+    if (users[username].password !== password) {
+        console.log('Mot de passe incorrect pour:', username);
+        errorMessage.textContent = '❌ Nom d\'utilisateur ou mot de passe incorrect';
         errorMessage.style.display = 'block';
         return;
     }
+
+    console.log('Connexion réussie pour:', username);
 
     // Authentification réussie
     errorMessage.style.display = 'none';
     sessionStorage.setItem('user_logged_in', 'true');
-    sessionStorage.setItem('user_email', email);
+    sessionStorage.setItem('current_user', username);
 
     // Redirection après 500ms
     setTimeout(() => {
